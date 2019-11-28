@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/ishiyama0530/worksample-go-layered-architecture/app/infrastructure/inmemory"
+	"github.com/ishiyama0530/worksample-go-layered-architecture/app/infra/inmemory"
 	usecase "github.com/ishiyama0530/worksample-go-layered-architecture/app/usecase/user"
 
 	"github.com/julienschmidt/httprouter"
