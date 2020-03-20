@@ -1,7 +1,7 @@
 package inmemory
 
 import (
-	domain "github.com/ishiyama0530/worksample-go-layered-architecture/app/domain/user"
+	domain "worksample-go-layered-architecture/app/domain/user"
 )
 
 // UserStore is

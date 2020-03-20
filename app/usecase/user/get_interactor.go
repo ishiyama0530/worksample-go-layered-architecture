@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/ishiyama0530/worksample-go-layered-architecture/app/domain/user"
+	"worksample-go-layered-architecture/app/domain/user"
 )
 
 // GetUserInteractor is
