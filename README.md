@@ -6,3 +6,5 @@ go run main.go
 - add presenter layer
 - add google/wire pkg
 - add circle
+- add specification
+- add domain service
