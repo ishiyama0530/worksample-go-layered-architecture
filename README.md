@@ -1,3 +1,10 @@
 # worksample-go-layered-architecture
 
-cd ./cmd/api && go run main.go
+go run main.go
+
+### TODO
+- add presenter layer
+- add google/wire pkg
+- add circle
+- add specification
+- add domain service

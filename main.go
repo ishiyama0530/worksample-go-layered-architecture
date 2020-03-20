@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/ishiyama0530/worksample-go-layered-architecture/app/handler/v1"
-	apiconfig "github.com/ishiyama0530/worksample-go-layered-architecture/config"
+	"worksample-go-layered-architecture/app/handler/v1"
+	apiconfig "worksample-go-layered-architecture/config"
 	"github.com/julienschmidt/httprouter"
 )
 

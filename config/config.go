@@ -23,7 +23,7 @@ func Start(env string) (err error) {
 		return
 	}
 
-	path := fmt.Sprintf("../../config/config.%s.json", env)
+	path := fmt.Sprintf("./config/config.%s.json", env)
 	filepath.Join(executedPath)
 	jsonFile, err := os.Open(path)
 	if err != nil {
