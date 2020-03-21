@@ -15,12 +15,32 @@ import (
 
 // Setup is
 func Setup(router *httprouter.Router) *v1.UserController {
-	wire.Build(
+	bindController()
+	bindRepository()
+	bindUsecase()
+	return nil
+}
+
+func bindController() {
+	wire.NewSet(
 		v1.NewUserController,
-		ap.NewGetInteractor,
-		infra.NewUserRepository,
+	)
+}
+
+func bindRepository() {
+	wire.NewSet(
 		wire.Bind(new(user.Repository), new(*infra.UserRepository)),
+	)
+	wire.NewSet(
+		infra.NewUserRepository,
+	)
+}
+
+func bindUsecase() {
+	wire.NewSet(
 		wire.Bind(new(uc.GetUsecase), new(*ap.GetInteractor)),
 	)
-	return nil
+	wire.NewSet(
+		ap.NewGetInteractor,
+	)
 }
