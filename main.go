@@ -2,30 +2,34 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 	"worksample-go-layered-architecture/inject"
 
-	config "worksample-go-layered-architecture/config"
-
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 	"github.com/julienschmidt/httprouter"
 )
 
 const env = "mock"
 
 func main() {
-	config.Start(env)
-	c := config.Get()
+	log.Println(fmt.Sprintf("./config/%s.env", os.Getenv("GO_ENV")))
+	err := godotenv.Load(fmt.Sprintf("./config/%s.env", os.Getenv("GO_ENV")))
+
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
 	var router *httprouter.Router = httprouter.New()
-
 	inject.Setup(router)
 
 	server := http.Server{
-		Addr:    c.Server.Addr,
+		Addr:    os.Getenv("IP"),
 		Handler: router,
 	}
 
-	fmt.Printf("Listening at: %s\n", server.Addr)
+	log.Printf("Listening at: %s\n", server.Addr)
 	server.ListenAndServe()
 }

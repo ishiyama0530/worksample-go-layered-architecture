@@ -1,6 +1,6 @@
 # worksample-go-layered-architecture
 
-wire ./inject & go run main.go
+GO_ENV=mock && wire ./inject & go run main.go
 
 ### TODO
 - add presenter layer

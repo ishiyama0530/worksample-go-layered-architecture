@@ -14,7 +14,7 @@ import (
 
 // Injectors from Injector.mock.go:
 
-func InjectMockDependency(router *httprouter.Router) *v1.UserController {
+func Setup(router *httprouter.Router) *v1.UserController {
 	userRepository := inmemory.NewUserRepository()
 	getInteractor := user.NewGetInteractor(userRepository)
 	userController := v1.NewUserController(getInteractor, router)
