@@ -1,7 +1,7 @@
 package user
 
 import (
-	"worksample-go-layered-architecture/app/domain/user"
+	user "worksample-go-layered-architecture/app/domain/user_aggregate"
 	uc "worksample-go-layered-architecture/app/usecase/user"
 )
 

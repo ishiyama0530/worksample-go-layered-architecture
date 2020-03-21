@@ -1,6 +1,6 @@
 package inmemory
 
-import "worksample-go-layered-architecture/app/domain/user"
+import user "worksample-go-layered-architecture/app/domain/user_aggregate"
 
 // UserRepository is
 type UserRepository struct {

@@ -28,3 +28,8 @@ func NewName(value string) (*Name, error) {
 func (name *Name) Value() string {
 	return name.value
 }
+
+// Equal is
+func (name *Name) Equal(arg *Name) bool {
+	return name.value == arg.Value()
+}

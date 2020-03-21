@@ -28,3 +28,8 @@ func NewID(value string) (*ID, error) {
 func (id *ID) Value() string {
 	return id.value
 }
+
+// Equal is
+func (id *ID) Equal(arg *ID) bool {
+	return id.value == arg.Value()
+}

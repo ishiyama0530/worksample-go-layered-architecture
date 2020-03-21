@@ -8,7 +8,7 @@ import (
 
 	ap "worksample-go-layered-architecture/app/application/user"
 	v1 "worksample-go-layered-architecture/app/controller/v1"
-	"worksample-go-layered-architecture/app/domain/user"
+	user "worksample-go-layered-architecture/app/domain/user_aggregate"
 	infra "worksample-go-layered-architecture/app/infrastructure/inmemory"
 	uc "worksample-go-layered-architecture/app/usecase/user"
 )
