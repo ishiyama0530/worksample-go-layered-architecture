@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
+	ap "worksample-go-layered-architecture/app/application/user"
 	v1 "worksample-go-layered-architecture/app/controller/v1"
+	infra "worksample-go-layered-architecture/app/infrastructure/inmemory"
 	config "worksample-go-layered-architecture/config"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -18,7 +20,11 @@ func main() {
 	c := config.Get()
 
 	var router *httprouter.Router = httprouter.New()
-	v1.NewAccountController(router)
+
+	userRepo := infra.NewUserRepository()
+	getUserInteractor := ap.NewGetInteractor(userRepo)
+
+	v1.Setup(getUserInteractor, router)
 
 	server := http.Server{
 		Addr:    c.Server.Addr,

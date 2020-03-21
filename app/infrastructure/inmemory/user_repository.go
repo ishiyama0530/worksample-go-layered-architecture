@@ -6,6 +6,11 @@ import "worksample-go-layered-architecture/app/domain/user"
 type UserRepository struct {
 }
 
+// NewUserRepository is
+func NewUserRepository() *UserRepository {
+	return new(UserRepository)
+}
+
 // FindByID is
 func (*UserRepository) FindByID(id user.ID) (*user.User, error) {
 	localID, err := user.NewID("id")

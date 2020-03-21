@@ -3,8 +3,6 @@ package v1
 import (
 	"fmt"
 	"net/http"
-	ap "worksample-go-layered-architecture/app/application/user"
-	"worksample-go-layered-architecture/app/infrastructure/inmemory"
 	uc "worksample-go-layered-architecture/app/usecase/user"
 
 	"github.com/julienschmidt/httprouter"
@@ -15,15 +13,12 @@ type AccountController struct {
 	interacor uc.GetUsecase
 }
 
-// NewAccountController is
-func NewAccountController(router *httprouter.Router) *AccountController {
+// Setup is
+func Setup(interacor uc.GetUsecase, router *httprouter.Router) {
 	c := new(AccountController)
-	repo := &inmemory.UserRepository{}
-	c.interacor = ap.NewGetInteractor(repo)
+	c.interacor = interacor
 
 	router.GET("/account/:id", c.get)
-
-	return c
 }
 
 func (c *AccountController) get(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
