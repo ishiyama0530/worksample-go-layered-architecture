@@ -27,7 +27,7 @@ func Start(env string) (err error) {
 	filepath.Join(executedPath)
 	jsonFile, err := os.Open(path)
 	if err != nil {
-		fmt.Println("Error opening JSON file:", err)
+		fmt.Println("error opening JSON file:", err)
 		return
 	}
 	defer jsonFile.Close()
@@ -35,7 +35,7 @@ func Start(env string) (err error) {
 	decoder := json.NewDecoder(jsonFile)
 	err = decoder.Decode(&instance)
 	if err != nil {
-		fmt.Println("Error decoding JSON:", err)
+		fmt.Println("error decoding JSON:", err)
 		return
 	}
 	return

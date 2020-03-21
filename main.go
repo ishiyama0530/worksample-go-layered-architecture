@@ -3,17 +3,15 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"worksample-go-layered-architecture/inject"
 
-	ap "worksample-go-layered-architecture/app/application/user"
-	v1 "worksample-go-layered-architecture/app/controller/v1"
-	infra "worksample-go-layered-architecture/app/infrastructure/inmemory"
 	config "worksample-go-layered-architecture/config"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/julienschmidt/httprouter"
 )
 
-const env = "dev"
+const env = "mock"
 
 func main() {
 	config.Start(env)
@@ -21,10 +19,7 @@ func main() {
 
 	var router *httprouter.Router = httprouter.New()
 
-	userRepo := infra.NewUserRepository()
-	getUserInteractor := ap.NewGetInteractor(userRepo)
-
-	v1.Setup(getUserInteractor, router)
+	inject.Setup(router)
 
 	server := http.Server{
 		Addr:    c.Server.Addr,

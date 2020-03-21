@@ -8,20 +8,22 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// AccountController is
-type AccountController struct {
+// UserController is
+type UserController struct {
 	interacor uc.GetUsecase
 }
 
-// Setup is
-func Setup(interacor uc.GetUsecase, router *httprouter.Router) {
-	c := new(AccountController)
+// NewUserController is
+func NewUserController(interacor uc.GetUsecase, router *httprouter.Router) *UserController {
+	c := new(UserController)
 	c.interacor = interacor
 
 	router.GET("/account/:id", c.get)
+
+	return c
 }
 
-func (c *AccountController) get(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (c *UserController) get(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	id := p.ByName("id")
 	inputData := uc.NewGetInputData(id)
 	outputData, err := c.interacor.Handle(*inputData)
