@@ -4,23 +4,24 @@ import (
 	"fmt"
 	"net/http"
 
+	v1 "worksample-go-layered-architecture/app/controller/v1"
+	config "worksample-go-layered-architecture/config"
+
 	_ "github.com/go-sql-driver/mysql"
-	"worksample-go-layered-architecture/app/handler/v1"
-	apiconfig "worksample-go-layered-architecture/config"
 	"github.com/julienschmidt/httprouter"
 )
 
 const env = "dev"
 
 func main() {
-	apiconfig.Start(env)
-	config := apiconfig.Get()
+	config.Start(env)
+	c := config.Get()
 
 	var router *httprouter.Router = httprouter.New()
-	handler.RegisterHandleFunc(router)
+	v1.NewAccountController(router)
 
 	server := http.Server{
-		Addr:    config.Server.Addr,
+		Addr:    c.Server.Addr,
 		Handler: router,
 	}
 
