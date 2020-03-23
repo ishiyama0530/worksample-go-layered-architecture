@@ -1,6 +1,8 @@
 # worksample-go-layered-architecture
 
-GO_ENV=mock && wire ./inject & go run main.go
+GO_ENV=mock go run main.go
+
+wire gen ./inject &&
 
 ### TODO
 - add presenter layer
@@ -9,3 +11,4 @@ GO_ENV=mock && wire ./inject & go run main.go
 - add specification
 - add domain service
 - transaction
+- swagger

@@ -8,39 +8,31 @@ import (
 
 	ap "worksample-go-layered-architecture/app/application/user"
 	v1 "worksample-go-layered-architecture/app/controller/v1"
-	user "worksample-go-layered-architecture/app/domain/user_aggregate"
-	infra "worksample-go-layered-architecture/app/infrastructure/inmemory"
+	user "worksample-go-layered-architecture/app/domain/user"
+	pe "worksample-go-layered-architecture/app/persistence/inmemory"
+	qs "worksample-go-layered-architecture/app/queryservice/inmemory/user"
 	uc "worksample-go-layered-architecture/app/usecase/user"
 )
 
 // Setup is
 func Setup(router *httprouter.Router) *v1.UserController {
-	bindController()
-	bindRepository()
-	bindUsecase()
+	wire.Build(controllerSet, repositorySet, usecaseSet)
+
 	return nil
 }
 
-func bindController() {
-	wire.NewSet(
-		v1.NewUserController,
-	)
-}
+var controllerSet = wire.NewSet(
+	v1.NewUserController,
+)
 
-func bindRepository() {
-	wire.NewSet(
-		wire.Bind(new(user.Repository), new(*infra.UserRepository)),
-	)
-	wire.NewSet(
-		infra.NewUserRepository,
-	)
-}
+var repositorySet = wire.NewSet(
+	pe.NewUserRepository,
+	wire.Bind(new(user.Repository), new(*pe.UserRepository)),
+)
 
-func bindUsecase() {
-	wire.NewSet(
-		wire.Bind(new(uc.GetUsecase), new(*ap.GetInteractor)),
-	)
-	wire.NewSet(
-		ap.NewGetInteractor,
-	)
-}
+var usecaseSet = wire.NewSet(
+	ap.NewCreateInteractor,
+	qs.NewGetInteractor,
+	wire.Bind(new(uc.CreateUsecase), new(*ap.CreateInteractor)),
+	wire.Bind(new(uc.GetUsecase), new(*qs.GetInteractor)),
+)

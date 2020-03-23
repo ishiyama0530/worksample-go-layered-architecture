@@ -5,12 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
+            "name": "Mock",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}",
-            "env": {},
+            "env": {
+                "GO_ENV":"mock"
+            },
             "args": []
         }
     ]

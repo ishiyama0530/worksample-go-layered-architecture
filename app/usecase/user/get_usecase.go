@@ -2,7 +2,7 @@ package user
 
 // GetUsecase is
 type GetUsecase interface {
-	Handle(inp GetInputData) (*GetOutputData, error)
+	Handle(inp GetInputData) (out *GetOutputData, err error)
 }
 
 // GetInputData is

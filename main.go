@@ -15,11 +15,10 @@ import (
 const env = "mock"
 
 func main() {
-	log.Println(fmt.Sprintf("./config/%s.env", os.Getenv("GO_ENV")))
 	err := godotenv.Load(fmt.Sprintf("./config/%s.env", os.Getenv("GO_ENV")))
 
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal(fmt.Sprintf("Error loading %s.env file", os.Getenv("GO_ENV")))
 	}
 
 	var router *httprouter.Router = httprouter.New()

@@ -7,9 +7,9 @@ type User struct {
 }
 
 // NewUser is
-func NewUser(id ID, name Name) *User {
+func NewUser(id ID, name Name) (*User, error) {
 	u := new(User)
 	u.ID = id
 	u.Name = name
-	return u
+	return u, nil
 }
